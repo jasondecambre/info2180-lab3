@@ -73,7 +73,21 @@ for(var i=0; i<9; i++){
             return false;
     }
 
-    
+    document.getElementsByClassName("btn")[0].addEventListener("click", function(){
+        console.log("button clicked");
+        document.getElementById("status").innerHTML = "Move your mouse over a square and click to play an X or an O.";
+        document.getElementById("status").classList.remove("you-won");
+        //I was getting an error with the "<" sign in a for loop so doing manually
+        board.children[0].innerHTML = "";
+        board.children[1].innerHTML = "";
+        board.children[2].innerHTML = "";
+        board.children[3].innerHTML = "";
+        board.children[4].innerHTML = "";
+        board.children[5].innerHTML = "";
+        board.children[6].innerHTML = "";
+        board.children[7].innerHTML = "";
+        board.children[8].innerHTML = "";
+    });
 
 }
 
