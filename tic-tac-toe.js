@@ -11,21 +11,26 @@ for(var i=0; i<9; i++){
     sq.classList.add("square"); //puts each of the 9 squares onto the screen
 
     //adding ability for players to enter X and O (exercise 2)
-    sq.addEventListener("click", function(){ 
-        if(lastMove == "O" || lastMove == ""){
+    sq.addEventListener("click", function(){
+        //Disallow cheating
+        if(this.innerHTML != "X" && this.innerHTML != "O"){
+                 
+         
+        if(lastMove == "" || lastMove != "X"){
             this.innerHTML = "X";
             this.classList.add("X");
-            lastMove = "X";   
+            lastMove = "X"; 
+
             if (won("X")){
                 document.getElementById("status").innerHTML = "Congratulations! X is the Winner!";
                 document.getElementById("status").classList.add("you-won");
             }
             else if (won("O")){
                 document.getElementById("status").innerHTML = "Congratulations! O is the Winner!";
-                document.getElementById("status").classList.add("you-won");
+                document.getElementById("status").classList.add("you-won");                
             }      
         }
-        else{
+        else if(lastMove != "" || lastMove != "O"){
             this.innerHTML = "O";
             this.classList.add("O");
             lastMove = "O";
@@ -37,7 +42,8 @@ for(var i=0; i<9; i++){
                 document.getElementById("status").innerHTML = "Congratulations! O is the Winner!";
                 document.getElementById("status").classList.add("you-won");
             }
-        }    
+        } 
+    } // end "disallow cheating" if-statement   
     
         }); //end event listener function for X and O
 
@@ -78,15 +84,13 @@ for(var i=0; i<9; i++){
         document.getElementById("status").innerHTML = "Move your mouse over a square and click to play an X or an O.";
         document.getElementById("status").classList.remove("you-won");
         //I was getting an error with the "<" sign in a for loop so doing manually
-        board.children[0].innerHTML = "";
-        board.children[1].innerHTML = "";
-        board.children[2].innerHTML = "";
-        board.children[3].innerHTML = "";
-        board.children[4].innerHTML = "";
-        board.children[5].innerHTML = "";
-        board.children[6].innerHTML = "";
-        board.children[7].innerHTML = "";
-        board.children[8].innerHTML = "";
+        
+        for(var i=0;i<9;i++){
+            board.children[i].innerHTML = "";
+            board.children[i].classList.remove("X");
+            board.children[i].classList.remove("O");
+        } 
+        lastMove = "";
     });
 
 }
